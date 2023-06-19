@@ -19,9 +19,9 @@ struct TodoItem {
     let text: String
     let deadline: Date?
     let isDone: Bool
-    var importance: Importance
+    let importance: Importance
     let dateCreation: Date
-    var dateСhange: Date?
+    let dateСhange: Date?
 
     init(id: String?, text: String, deadline: Date?, isDone: Bool, importance: Importance, dateCreation: Date, dateСhange: Date? = nil) {
         if id != nil {
