@@ -87,9 +87,12 @@ extension TodoItem {
                 case "true" : isDoneParse = true
                 case "false" : isDoneParse = false
             default:
-                print("isDoneParse nil error")
+                print("isDoneParse format not Bool")
                 return nil
             }
+        } else {
+            print("isDoneParse nil error")
+            return nil
         }
         if json["importance"] != nil {
             switch json["importance"]! {
