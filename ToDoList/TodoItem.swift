@@ -83,12 +83,18 @@ extension TodoItem {
         idParse = json["id"]
         textParse = json["text"]
         if json["isDone"] != nil {
-            isDoneParse = json["isDone"] == "true" ? true : false
+            switch json["isDone"]! {
+                case "true" : isDoneParse = true
+                case "false" : isDoneParse = false
+            default:
+                print("isDoneParse nil error")
+                return nil
+            }
         }
         if json["importance"] != nil {
             switch json["importance"]! {
-            case Importance.important.rawValue : importanceParse = .important
-            case Importance.unimportant.rawValue : importanceParse = .unimportant
+                case Importance.important.rawValue : importanceParse = .important
+                case Importance.unimportant.rawValue : importanceParse = .unimportant
             default:
                 print("importanceParse format error")
                 return nil
@@ -118,10 +124,6 @@ extension TodoItem {
         }
         if textParse == nil {
             print("textParse nil error")
-            return nil
-        }
-        if isDoneParse == nil {
-            print("isDoneParse nil error")
             return nil
         }
         if importanceParse == nil {
@@ -185,7 +187,7 @@ class FileCache {
     private func getUrl(file: String, fileExtension: String) -> URL {
         var path = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
         path = path.appendingPathComponent("\(file).\(fileExtension)")
-        //print(path) //путь к папке documentDirectory
+        print(path) //путь к папке documentDirectory
         return path
     }
     
@@ -334,5 +336,3 @@ extension FileCache {
         }
     }
 }
-
-//print(a234.collectionTodoItem)
