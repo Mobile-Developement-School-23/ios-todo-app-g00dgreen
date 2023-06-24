@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="56" id="KGk-i7-Jjw" customClass="SecondTableViewCell" customModule="ToDoList" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Aal-7e-wbV">
+                        <rect key="frame" x="16" y="8" width="90.333333333333329" height="40"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сделать до" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6XE-4q-ZMH">
+                                <rect key="frame" x="0.0" y="9" width="90.333333333333329" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="ZvR-cs-NSF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tws-F6-g9g">
+                                <rect key="frame" x="0.0" y="31" width="90.333333333333329" height="30"/>
+                                <inset key="titleEdgeInsets" minX="-10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title=""/>
+                                <connections>
+                                    <action selector="dateButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="2K3-64-u2L"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="tws-F6-g9g" secondAttribute="bottom" constant="-100" id="6p6-tX-BNG"/>
+                            <constraint firstItem="6XE-4q-ZMH" firstAttribute="leading" secondItem="Aal-7e-wbV" secondAttribute="leading" id="ENZ-nn-UWE"/>
+                            <constraint firstItem="tws-F6-g9g" firstAttribute="top" secondItem="6XE-4q-ZMH" secondAttribute="bottom" priority="800" id="EaF-Qr-uBO"/>
+                            <constraint firstItem="tws-F6-g9g" firstAttribute="leading" secondItem="Aal-7e-wbV" secondAttribute="leading" id="QuL-oM-pPA"/>
+                            <constraint firstItem="6XE-4q-ZMH" firstAttribute="top" secondItem="Aal-7e-wbV" secondAttribute="top" constant="9" id="Ynv-nT-TdS"/>
+                        </constraints>
+                    </stackView>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="x3S-1P-gQt">
+                        <rect key="frame" x="259" y="12.666666666666664" width="51" height="31"/>
+                        <connections>
+                            <action selector="switchAction:" destination="KGk-i7-Jjw" eventType="valueChanged" id="AON-5d-04e"/>
+                        </connections>
+                    </switch>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="x3S-1P-gQt" secondAttribute="trailing" constant="12" id="BXf-q3-wsb"/>
+                    <constraint firstItem="Aal-7e-wbV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="QJD-Nc-Afc"/>
+                    <constraint firstItem="Aal-7e-wbV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="dbS-fz-Oeb"/>
+                    <constraint firstAttribute="bottom" secondItem="Aal-7e-wbV" secondAttribute="bottom" constant="8" id="eDa-qr-uo8"/>
+                    <constraint firstItem="x3S-1P-gQt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12.5" id="odB-Pg-h0p"/>
+                    <constraint firstAttribute="bottom" secondItem="x3S-1P-gQt" secondAttribute="bottom" constant="12.5" id="qWJ-3u-cnN"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="buttonBottomConstraint" destination="6p6-tX-BNG" id="Vxj-Xw-6zN"/>
+                <outlet property="dateButton" destination="tws-F6-g9g" id="RJa-ES-YA3"/>
+                <outlet property="labelTopConstraint" destination="Ynv-nT-TdS" id="9rf-2N-4PR"/>
+                <outlet property="labelView" destination="6XE-4q-ZMH" id="tQt-LR-ic0"/>
+                <outlet property="stackView" destination="Aal-7e-wbV" id="HWf-hx-e1x"/>
+                <outlet property="switchView" destination="x3S-1P-gQt" id="qFv-1W-3zc"/>
+            </connections>
+            <point key="canvasLocation" x="13.740458015267174" y="24.647887323943664"/>
+        </tableViewCell>
+    </objects>
+</document>

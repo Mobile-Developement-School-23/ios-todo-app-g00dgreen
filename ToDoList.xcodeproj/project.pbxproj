@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC841FEB2A4476A100C53093 /* TuskDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC841FEA2A4476A100C53093 /* TuskDetailController.swift */; };
 		ACBA07D32A3728D500504F68 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBA07D22A3728D500504F68 /* AppDelegate.swift */; };
 		ACBA07D52A3728D500504F68 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBA07D42A3728D500504F68 /* SceneDelegate.swift */; };
 		ACBA07D72A3728D500504F68 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBA07D62A3728D500504F68 /* ViewController.swift */; };
@@ -17,6 +18,12 @@
 		ACBA07F42A3728D600504F68 /* ToDoListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBA07F32A3728D600504F68 /* ToDoListUITests.swift */; };
 		ACBA07F62A3728D600504F68 /* ToDoListUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBA07F52A3728D600504F68 /* ToDoListUITestsLaunchTests.swift */; };
 		ACBA08032A3728FF00504F68 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBA08022A3728FF00504F68 /* TodoItem.swift */; };
+		ACCEA1292A45C36C0014BC8C /* FirstTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCEA1272A45C36C0014BC8C /* FirstTableViewCell.swift */; };
+		ACCEA12A2A45C36C0014BC8C /* FirstTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACCEA1282A45C36C0014BC8C /* FirstTableViewCell.xib */; };
+		ACCEA12D2A45C3980014BC8C /* SecondTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCEA12B2A45C3980014BC8C /* SecondTableViewCell.swift */; };
+		ACCEA12E2A45C3980014BC8C /* SecondTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACCEA12C2A45C3980014BC8C /* SecondTableViewCell.xib */; };
+		ACCEA1312A45C3BF0014BC8C /* ThirdTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCEA12F2A45C3BF0014BC8C /* ThirdTableViewCell.swift */; };
+		ACCEA1322A45C3BF0014BC8C /* ThirdTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACCEA1302A45C3BF0014BC8C /* ThirdTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AC841FEA2A4476A100C53093 /* TuskDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuskDetailController.swift; sourceTree = "<group>"; };
 		ACBA07CF2A3728D500504F68 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACBA07D22A3728D500504F68 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ACBA07D42A3728D500504F68 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +59,12 @@
 		ACBA07F32A3728D600504F68 /* ToDoListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListUITests.swift; sourceTree = "<group>"; };
 		ACBA07F52A3728D600504F68 /* ToDoListUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		ACBA08022A3728FF00504F68 /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
+		ACCEA1272A45C36C0014BC8C /* FirstTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTableViewCell.swift; sourceTree = "<group>"; };
+		ACCEA1282A45C36C0014BC8C /* FirstTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstTableViewCell.xib; sourceTree = "<group>"; };
+		ACCEA12B2A45C3980014BC8C /* SecondTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTableViewCell.swift; sourceTree = "<group>"; };
+		ACCEA12C2A45C3980014BC8C /* SecondTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SecondTableViewCell.xib; sourceTree = "<group>"; };
+		ACCEA12F2A45C3BF0014BC8C /* ThirdTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTableViewCell.swift; sourceTree = "<group>"; };
+		ACCEA1302A45C3BF0014BC8C /* ThirdTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThirdTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +92,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AC6FCD702A44859B00B6A4D4 /* TuskDetail */ = {
+			isa = PBXGroup;
+			children = (
+				AC841FEA2A4476A100C53093 /* TuskDetailController.swift */,
+				ACCEA1332A45C3C50014BC8C /* DetailTableViewCell */,
+			);
+			path = TuskDetail;
+			sourceTree = "<group>";
+		};
+		AC6FCD712A4485D400B6A4D4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				ACBA07DB2A3728D600504F68 /* Assets.xcassets */,
+				ACBA07DD2A3728D600504F68 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		AC6FCD722A44860400B6A4D4 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				ACBA07D22A3728D500504F68 /* AppDelegate.swift */,
+				ACBA07D42A3728D500504F68 /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		AC6FCD732A44863400B6A4D4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				ACBA08022A3728FF00504F68 /* TodoItem.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AC6FCD742A44865800B6A4D4 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				ACBA07D62A3728D500504F68 /* ViewController.swift */,
+				ACBA07D82A3728D500504F68 /* Main.storyboard */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		ACBA07C62A3728D500504F68 = {
 			isa = PBXGroup;
 			children = (
@@ -101,14 +159,12 @@
 		ACBA07D12A3728D500504F68 /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
-				ACBA07D22A3728D500504F68 /* AppDelegate.swift */,
-				ACBA07D42A3728D500504F68 /* SceneDelegate.swift */,
-				ACBA07D62A3728D500504F68 /* ViewController.swift */,
-				ACBA08022A3728FF00504F68 /* TodoItem.swift */,
-				ACBA07D82A3728D500504F68 /* Main.storyboard */,
-				ACBA07DB2A3728D600504F68 /* Assets.xcassets */,
-				ACBA07DD2A3728D600504F68 /* LaunchScreen.storyboard */,
 				ACBA07E02A3728D600504F68 /* Info.plist */,
+				AC6FCD722A44860400B6A4D4 /* Application */,
+				AC6FCD712A4485D400B6A4D4 /* Resources */,
+				AC6FCD702A44859B00B6A4D4 /* TuskDetail */,
+				AC6FCD732A44863400B6A4D4 /* Model */,
+				AC6FCD742A44865800B6A4D4 /* Main */,
 			);
 			path = ToDoList;
 			sourceTree = "<group>";
@@ -128,6 +184,19 @@
 				ACBA07F52A3728D600504F68 /* ToDoListUITestsLaunchTests.swift */,
 			);
 			path = ToDoListUITests;
+			sourceTree = "<group>";
+		};
+		ACCEA1332A45C3C50014BC8C /* DetailTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				ACCEA1272A45C36C0014BC8C /* FirstTableViewCell.swift */,
+				ACCEA1282A45C36C0014BC8C /* FirstTableViewCell.xib */,
+				ACCEA12B2A45C3980014BC8C /* SecondTableViewCell.swift */,
+				ACCEA12C2A45C3980014BC8C /* SecondTableViewCell.xib */,
+				ACCEA12F2A45C3BF0014BC8C /* ThirdTableViewCell.swift */,
+				ACCEA1302A45C3BF0014BC8C /* ThirdTableViewCell.xib */,
+			);
+			path = DetailTableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,7 +305,10 @@
 			files = (
 				ACBA07DF2A3728D600504F68 /* LaunchScreen.storyboard in Resources */,
 				ACBA07DC2A3728D600504F68 /* Assets.xcassets in Resources */,
+				ACCEA12E2A45C3980014BC8C /* SecondTableViewCell.xib in Resources */,
+				ACCEA12A2A45C36C0014BC8C /* FirstTableViewCell.xib in Resources */,
 				ACBA07DA2A3728D500504F68 /* Main.storyboard in Resources */,
+				ACCEA1322A45C3BF0014BC8C /* ThirdTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,9 +333,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACCEA1292A45C36C0014BC8C /* FirstTableViewCell.swift in Sources */,
+				ACCEA1312A45C3BF0014BC8C /* ThirdTableViewCell.swift in Sources */,
 				ACBA07D72A3728D500504F68 /* ViewController.swift in Sources */,
 				ACBA07D32A3728D500504F68 /* AppDelegate.swift in Sources */,
+				AC841FEB2A4476A100C53093 /* TuskDetailController.swift in Sources */,
 				ACBA08032A3728FF00504F68 /* TodoItem.swift in Sources */,
+				ACCEA12D2A45C3980014BC8C /* SecondTableViewCell.swift in Sources */,
 				ACBA07D52A3728D500504F68 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
