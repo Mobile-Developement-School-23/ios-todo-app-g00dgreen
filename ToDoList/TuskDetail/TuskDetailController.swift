@@ -4,9 +4,9 @@
 //
 //  Created by Артем Макар on 22.06.23.
 //
-
 import UIKit
 
+// swiftlint:disable all
 protocol TuskDetailControllerDelegate {
     func updateTableView()
 }

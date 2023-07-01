@@ -5,6 +5,7 @@
 //  Created by Артем Макар on 29.06.23.
 //
 
+// swiftlint:disable all
 import UIKit
 protocol DetailTaskCellDelegate {
     func setIsDone(id: TodoItem)

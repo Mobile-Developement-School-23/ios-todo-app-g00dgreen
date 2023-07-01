@@ -5,12 +5,12 @@
 //  Created by Артем Макар on 12.06.23.
 //
 
-import UIKit
+import CocoaLumberjackSwift
 
+import UIKit
+// swiftlint:disable all
 class ViewController: UIViewController{
     
-    
-
     var tableView: UITableView = {
         let table = UITableView(frame: .zero, style: .insetGrouped)
         table.layer.cornerRadius = 16
@@ -21,7 +21,6 @@ class ViewController: UIViewController{
         table.register(TuskListHeader.self, forHeaderFooterViewReuseIdentifier: TuskListHeader.identifier)
         return table
     }()
-    
     var newTuskButton: UIButton = {
         var button = UIButton()
         button.setTitle("", for: .normal)
