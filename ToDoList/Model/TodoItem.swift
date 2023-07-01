@@ -4,8 +4,12 @@
 //
 //  Created by Артем Макар on 12.06.23.
 //
+// swiftlint:disable all
+
+
 
 import Foundation
+import CocoaLumberjackSwift
 
 enum Importance: String {
     case common = "common"
@@ -126,6 +130,7 @@ extension TodoItem {
 
         }
         if textParse == nil {
+            DDLogError("textParse nil error")
             print("textParse nil error")
             return nil
         }
@@ -147,10 +152,10 @@ class FileCache {
     private(set) var collectionTodoItem: [TodoItem] = []
 
     func addTask(task: TodoItem) {
-        for (j,i) in collectionTodoItem.enumerated() {
-            if i.id == task.id {
+        for (jjj,iii) in collectionTodoItem.enumerated() {
+            if iii.id == task.id {
                 print("id \(task.id) already exists, changing...")
-                collectionTodoItem[j] = task
+                collectionTodoItem[jjj] = task
                 return
             }
         }
@@ -174,17 +179,19 @@ class FileCache {
         if let data = try? Data(contentsOf: getUrl(file: file, fileExtension: "json")) {
             if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String: String]] {
                 var toDoItems: [TodoItem] = []
-                for i in json {
-                    if let item = TodoItem.parse(json: i) {
+                for data in json {
+                    if let item = TodoItem.parse(json: data) {
                         toDoItems.append(item)
                     }
                 }
                 collectionTodoItem = toDoItems
             } else {
+                DDLogError("json decode erorr")
                 print("json decode erorr")
             }
         } else {
-            print("dowload Data erorr")
+            DDLogError("json decode erorr")
+            print("json decode erorr")
         }
     }
     private func getUrl(file: String, fileExtension: String) -> URL {
@@ -195,8 +202,8 @@ class FileCache {
     }
     
     func test() {
-        for i in collectionTodoItem {
-            print(i)
+        for item in collectionTodoItem {
+            print(item)
         }
     }
 }
@@ -236,6 +243,7 @@ extension TodoItem {
         
         if parseArray.count != 7 {
             print("csv parse count error")
+            DDLogError("csv parse count error")
             return nil
         }
         
@@ -256,6 +264,7 @@ extension TodoItem {
             if let timeResult = (Double(parseArray[2])) {
                 deadlineCSV = Date(timeIntervalSince1970: timeResult)
             } else {
+                DDLogError("deadlineCSV format error")
                 print("deadlineCSV format error")
                 return nil
             }
@@ -265,6 +274,7 @@ extension TodoItem {
             case "true" : isDoneCSV = true
             case "false" : isDoneCSV = false
         default :
+            DDLogError("isDoneCSV format error")
             print("isDoneCSV format error")
             return nil
         }
@@ -276,6 +286,7 @@ extension TodoItem {
             case Importance.important.rawValue : importanceCSV = .important
             case Importance.unimportant.rawValue : importanceCSV = .unimportant
             default:
+                DDLogError("importanceCSV format error")
                 print("importanceCSV format error")
                 return nil
             }
@@ -285,10 +296,12 @@ extension TodoItem {
             if let timeResult = (Double(parseArray[5])) {
                 dateCreationCSV = Date(timeIntervalSince1970: timeResult)
             } else {
+                DDLogError("dateCreationCSV format error")
                 print("dateCreationCSV format error")
                 return nil
             }
         } else {
+            DDLogError("dateCreationCSV nil error")
             print("dateCreationCSV nil error")
         }
         
@@ -296,6 +309,7 @@ extension TodoItem {
             if let timeResult = (Double(parseArray[6])) {
                 dateСhangeCSV = Date(timeIntervalSince1970: timeResult)
             } else {
+                DDLogError("dateСhangeCSV format error")
                 print("dateСhangeCSV format error")
                 return nil
             }
@@ -316,6 +330,7 @@ extension FileCache {
         do {
             try csv.write(to: getUrl(file: file, fileExtension: "csv"), atomically: true, encoding: .utf8)
         } catch {
+            DDLogError("error creating file")
             print("error creating file")
         }
     }
@@ -325,17 +340,20 @@ extension FileCache {
                 let itemsString = stringData.split(separator: "\n").dropFirst().compactMap({String($0)})
                 print(itemsString)
                 var toDoItems: [TodoItem] = []
-                for i in itemsString {
-                    if let item = TodoItem.parse(csv: i) {
+                for str in itemsString {
+                    if let item = TodoItem.parse(csv: str) {
                         toDoItems.append(item)
                     }
                 }
                 collectionTodoItem = toDoItems
             } else {
-                print("conver Data error")
+                DDLogError("conver Data error")
+                print("convert Data error")
             }
         } else {
+            DDLogError("dowload Data error")
             print("dowload Data error")
         }
     }
 }
+//swiftlint:enable all

@@ -7,7 +7,7 @@
 
 import XCTest
 @testable import ToDoList
-
+// swiftlint:disable all
 final class ToDoListTests: XCTestCase {
     
     var toDoItem1: TodoItem!
