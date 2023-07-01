@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC4606E82A4DF7E300E01F92 /* CreateNewTuskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4606E72A4DF7E300E01F92 /* CreateNewTuskCell.swift */; };
+		AC4606EA2A4E15BA00E01F92 /* TuskDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4606E92A4E15BA00E01F92 /* TuskDetailCell.swift */; };
+		AC4606EC2A4F3B0400E01F92 /* TuskListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4606EB2A4F3B0400E01F92 /* TuskListHeader.swift */; };
 		AC841FEB2A4476A100C53093 /* TuskDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC841FEA2A4476A100C53093 /* TuskDetailController.swift */; };
 		ACBA07D32A3728D500504F68 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBA07D22A3728D500504F68 /* AppDelegate.swift */; };
 		ACBA07D52A3728D500504F68 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBA07D42A3728D500504F68 /* SceneDelegate.swift */; };
@@ -44,6 +47,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AC4606E72A4DF7E300E01F92 /* CreateNewTuskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewTuskCell.swift; sourceTree = "<group>"; };
+		AC4606E92A4E15BA00E01F92 /* TuskDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuskDetailCell.swift; sourceTree = "<group>"; };
+		AC4606EB2A4F3B0400E01F92 /* TuskListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuskListHeader.swift; sourceTree = "<group>"; };
 		AC841FEA2A4476A100C53093 /* TuskDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuskDetailController.swift; sourceTree = "<group>"; };
 		ACBA07CF2A3728D500504F68 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACBA07D22A3728D500504F68 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -92,9 +98,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AC4606E62A4DF79000E01F92 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				AC4606E72A4DF7E300E01F92 /* CreateNewTuskCell.swift */,
+				AC4606E92A4E15BA00E01F92 /* TuskDetailCell.swift */,
+				AC4606EB2A4F3B0400E01F92 /* TuskListHeader.swift */,
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		AC6FCD702A44859B00B6A4D4 /* TuskDetail */ = {
 			isa = PBXGroup;
 			children = (
+				AC4606E62A4DF79000E01F92 /* New Group */,
 				AC841FEA2A4476A100C53093 /* TuskDetailController.swift */,
 				ACCEA1332A45C3C50014BC8C /* DetailTableViewCell */,
 			);
@@ -334,13 +351,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACCEA1292A45C36C0014BC8C /* FirstTableViewCell.swift in Sources */,
+				AC4606EC2A4F3B0400E01F92 /* TuskListHeader.swift in Sources */,
 				ACCEA1312A45C3BF0014BC8C /* ThirdTableViewCell.swift in Sources */,
 				ACBA07D72A3728D500504F68 /* ViewController.swift in Sources */,
 				ACBA07D32A3728D500504F68 /* AppDelegate.swift in Sources */,
 				AC841FEB2A4476A100C53093 /* TuskDetailController.swift in Sources */,
+				AC4606E82A4DF7E300E01F92 /* CreateNewTuskCell.swift in Sources */,
 				ACBA08032A3728FF00504F68 /* TodoItem.swift in Sources */,
 				ACCEA12D2A45C3980014BC8C /* SecondTableViewCell.swift in Sources */,
 				ACBA07D52A3728D500504F68 /* SceneDelegate.swift in Sources */,
+				AC4606EA2A4E15BA00E01F92 /* TuskDetailCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

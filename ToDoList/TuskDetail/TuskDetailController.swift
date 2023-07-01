@@ -7,6 +7,12 @@
 
 import UIKit
 
+protocol TuskDetailControllerDelegate {
+    func updateTableView()
+}
+
+
+
 class TuskDetailController: UIViewController, DateValueDelegate, DatePickerDelegate{
 
     
@@ -22,6 +28,7 @@ class TuskDetailController: UIViewController, DateValueDelegate, DatePickerDeleg
     @IBOutlet weak var deleteButtonOutlet: UIButton!
     @IBOutlet weak var textView: UITextView!
     
+    var tuskDetailControllerDelegate: TuskDetailControllerDelegate?
     var date: Date?
     var countCell = 2
     var bool = false
@@ -38,7 +45,7 @@ class TuskDetailController: UIViewController, DateValueDelegate, DatePickerDeleg
         
         topStackView.backgroundColor = UIColor(red: 247/255.00, green: 246/255.0, blue: 242/255.0, alpha: 1)
         textView.layer.cornerRadius = 16
-       contentView.backgroundColor = UIColor(red: 247/255.00, green: 246/255.0, blue: 242/255.0, alpha: 1)
+        contentView.backgroundColor = UIColor(red: 247/255.00, green: 246/255.0, blue: 242/255.0, alpha: 1)
         scrollView.backgroundColor = UIColor(red: 247/255.00, green: 246/255.0, blue: 242/255.0, alpha: 1)
         view.backgroundColor = UIColor(red: 247/255.00, green: 246/255.0, blue: 242/255.0, alpha: 1)
 
@@ -78,6 +85,7 @@ class TuskDetailController: UIViewController, DateValueDelegate, DatePickerDeleg
     @IBAction func cancelButtonAction(_ sender: Any) {
         print("cancel")
         dismiss(animated: true)
+        
 
     }
     @IBAction func deleteButtonAction(_ sender: Any) {
@@ -87,6 +95,7 @@ class TuskDetailController: UIViewController, DateValueDelegate, DatePickerDeleg
             fileCahce.removeTask(id: id)
             print("deleted")
             fileCahce.safeTasks(safeToFileAsJSON: "test")
+            tuskDetailControllerDelegate?.updateTableView()
             dismiss(animated: true)
         } else {
             print("error")
@@ -112,9 +121,10 @@ class TuskDetailController: UIViewController, DateValueDelegate, DatePickerDeleg
     }
     func saveToDolist() {
         var fileCahce = FileCache()
+        fileCahce.downloadTasks(downloadFromFileAsJSON: "test")
         var importance: Importance = .common
         var deadline: Date?
-        if textView.textColor == .lightGray || textView.text == "Что надо сделать?" {
+        if textView.textColor == .lightGray || textView.text == "Что надо сделать?" || textView.text == "" {
             print("nil text")
             return
         }
@@ -131,7 +141,7 @@ class TuskDetailController: UIViewController, DateValueDelegate, DatePickerDeleg
                                              deadline: deadline,
                                              isDone: item.isDone,
                                              importance: importance,
-                                             dateCreation: .now-(60*60*24*10),
+                                             dateCreation: item.dateCreation,
                                              dateСhange: .now
                                             ))
         } else {
@@ -147,6 +157,7 @@ class TuskDetailController: UIViewController, DateValueDelegate, DatePickerDeleg
         }
         print("success safe")
         fileCahce.safeTasks(safeToFileAsJSON: "test")
+        tuskDetailControllerDelegate?.updateTableView()
         dismiss(animated: true)
         
     }
@@ -176,11 +187,6 @@ extension TuskDetailController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: SecondTableViewCell.self)) as! SecondTableViewCell
             cell.selectionStyle = .none
-//            if let deadline = item?.deadline {
-//                cell.deadline = deadline
-//                cell.checkDeadline()
-//
-//            }
             if let date = date {
                 cell.deadline = date
                 cell.checkDeadline()

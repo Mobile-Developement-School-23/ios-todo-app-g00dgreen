@@ -167,7 +167,7 @@ class FileCache {
         let json = collectionTodoItem.map { $0.json }
         let nsDictionaryData = try? JSONSerialization.data(withJSONObject: json)
         try? nsDictionaryData?.write(to: getUrl(file: file, fileExtension: "json"))
-        collectionTodoItem = []
+        //collectionTodoItem = []
     }
     
     func downloadTasks(downloadFromFileAsJSON file: String){
