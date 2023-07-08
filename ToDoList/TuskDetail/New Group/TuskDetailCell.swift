@@ -147,7 +147,7 @@ class TuskDetailCell: UITableViewCell {
         
     }
     @objc private func tapCircleButton() {
-        defaults.set(true, forKey: "isDirty")
+        //defaults.set(true, forKey: "isDirty")
         if let itemToDo = item {
             var value = TodoItem(id: itemToDo.id,
                                 text: itemToDo.text,
@@ -158,6 +158,7 @@ class TuskDetailCell: UITableViewCell {
             detailTaskCellDelegate?.setIsDone(id:  value)
            // var cache = FileCache()
             //cache.addTask(task: value)
+            DefaultNetworkingService.shared.putRequest(item: value)
             setup(item: itemToDo)
         }
        
