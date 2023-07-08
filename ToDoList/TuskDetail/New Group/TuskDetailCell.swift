@@ -13,6 +13,7 @@ protocol DetailTaskCellDelegate {
 
 class TuskDetailCell: UITableViewCell {
     
+    var defaults = UserDefaults()
     var detailTaskCellDelegate: DetailTaskCellDelegate?
     var indexPathRow: Int?
     static let identifier = "TuskDetailCell"
@@ -146,13 +147,17 @@ class TuskDetailCell: UITableViewCell {
         
     }
     @objc private func tapCircleButton() {
+        defaults.set(true, forKey: "isDirty")
         if let itemToDo = item {
-            detailTaskCellDelegate?.setIsDone(id:  TodoItem(id: itemToDo.id,
-                                                            text: itemToDo.text,
-                                                            deadline: itemToDo.deadline,
-                                                            isDone: !itemToDo.isDone,
-                                                            importance: itemToDo.importance,
-                                                            dateCreation: itemToDo.dateCreation))
+            var value = TodoItem(id: itemToDo.id,
+                                text: itemToDo.text,
+                                deadline: itemToDo.deadline,
+                                isDone: !itemToDo.isDone,
+                                importance: itemToDo.importance,
+                                dateCreation: itemToDo.dateCreation)
+            detailTaskCellDelegate?.setIsDone(id:  value)
+           // var cache = FileCache()
+            //cache.addTask(task: value)
             setup(item: itemToDo)
         }
        

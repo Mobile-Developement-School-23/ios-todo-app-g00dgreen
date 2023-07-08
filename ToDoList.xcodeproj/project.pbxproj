@@ -13,6 +13,9 @@
 		AC3FC3822A4FCF60005313F4 /* CocoaLumberjack in Frameworks */ = {isa = PBXBuildFile; productRef = AC3FC3812A4FCF60005313F4 /* CocoaLumberjack */; };
 		AC3FC3842A4FCF60005313F4 /* CocoaLumberjackSwift in Frameworks */ = {isa = PBXBuildFile; productRef = AC3FC3832A4FCF60005313F4 /* CocoaLumberjackSwift */; };
 		AC3FC3862A4FCF60005313F4 /* CocoaLumberjackSwiftLogBackend in Frameworks */ = {isa = PBXBuildFile; productRef = AC3FC3852A4FCF60005313F4 /* CocoaLumberjackSwiftLogBackend */; };
+		AC3FC38C2A547555005313F4 /* URLSession Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3FC38B2A547555005313F4 /* URLSession Extension.swift */; };
+		AC3FC38F2A589712005313F4 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3FC38E2A589712005313F4 /* Networking.swift */; };
+		AC3FC3912A58978C005313F4 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3FC3902A58978C005313F4 /* Element.swift */; };
 		AC4606E82A4DF7E300E01F92 /* CreateNewTuskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4606E72A4DF7E300E01F92 /* CreateNewTuskCell.swift */; };
 		AC4606EA2A4E15BA00E01F92 /* TuskDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4606E92A4E15BA00E01F92 /* TuskDetailCell.swift */; };
 		AC4606EC2A4F3B0400E01F92 /* TuskListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4606EB2A4F3B0400E01F92 /* TuskListHeader.swift */; };
@@ -60,6 +63,9 @@
 		5AFB1EEB46022ADCFE7F42AF /* Pods-ToDoList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoList.debug.xcconfig"; path = "Target Support Files/Pods-ToDoList/Pods-ToDoList.debug.xcconfig"; sourceTree = "<group>"; };
 		5C0EEAE54AB1ADFEDC72F38B /* Pods_ToDoList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToDoList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6768EB2B1819030EEE53DAE /* Pods-ToDoList-ToDoListUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoList-ToDoListUITests.release.xcconfig"; path = "Target Support Files/Pods-ToDoList-ToDoListUITests/Pods-ToDoList-ToDoListUITests.release.xcconfig"; sourceTree = "<group>"; };
+		AC3FC38B2A547555005313F4 /* URLSession Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession Extension.swift"; sourceTree = "<group>"; };
+		AC3FC38E2A589712005313F4 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		AC3FC3902A58978C005313F4 /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		AC4606E72A4DF7E300E01F92 /* CreateNewTuskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewTuskCell.swift; sourceTree = "<group>"; };
 		AC4606E92A4E15BA00E01F92 /* TuskDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuskDetailCell.swift; sourceTree = "<group>"; };
 		AC4606EB2A4F3B0400E01F92 /* TuskListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TuskListHeader.swift; sourceTree = "<group>"; };
@@ -132,6 +138,23 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		AC3FC38A2A5474DC005313F4 /* URLSession Extension */ = {
+			isa = PBXGroup;
+			children = (
+				AC3FC38B2A547555005313F4 /* URLSession Extension.swift */,
+			);
+			path = "URLSession Extension";
+			sourceTree = "<group>";
+		};
+		AC3FC38D2A589702005313F4 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				AC3FC38E2A589712005313F4 /* Networking.swift */,
+				AC3FC3902A58978C005313F4 /* Element.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		AC4606E62A4DF79000E01F92 /* New Group */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +214,8 @@
 			isa = PBXGroup;
 			children = (
 				ACBA07D12A3728D500504F68 /* ToDoList */,
+				AC3FC38D2A589702005313F4 /* Networking */,
+				AC3FC38A2A5474DC005313F4 /* URLSession Extension */,
 				ACBA07E82A3728D600504F68 /* ToDoListTests */,
 				ACBA07F22A3728D600504F68 /* ToDoListUITests */,
 				ACBA07D02A3728D500504F68 /* Products */,
@@ -486,7 +511,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -496,7 +521,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACCEA1292A45C36C0014BC8C /* FirstTableViewCell.swift in Sources */,
+				AC3FC38C2A547555005313F4 /* URLSession Extension.swift in Sources */,
 				AC4606EC2A4F3B0400E01F92 /* TuskListHeader.swift in Sources */,
+				AC3FC38F2A589712005313F4 /* Networking.swift in Sources */,
 				ACCEA1312A45C3BF0014BC8C /* ThirdTableViewCell.swift in Sources */,
 				ACBA07D72A3728D500504F68 /* ViewController.swift in Sources */,
 				ACBA07D32A3728D500504F68 /* AppDelegate.swift in Sources */,
@@ -505,6 +532,7 @@
 				ACBA08032A3728FF00504F68 /* TodoItem.swift in Sources */,
 				ACCEA12D2A45C3980014BC8C /* SecondTableViewCell.swift in Sources */,
 				ACBA07D52A3728D500504F68 /* SceneDelegate.swift in Sources */,
+				AC3FC3912A58978C005313F4 /* Element.swift in Sources */,
 				AC4606EA2A4E15BA00E01F92 /* TuskDetailCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
