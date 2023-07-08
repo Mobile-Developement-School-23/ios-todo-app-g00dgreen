@@ -197,7 +197,7 @@ class FileCache {
     private func getUrl(file: String, fileExtension: String) -> URL {
         var path = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
         path = path.appendingPathComponent("\(file).\(fileExtension)")
-        print(path) //путь к папке documentDirectory
+        //print(path) //путь к папке documentDirectory
         return path
     }
     

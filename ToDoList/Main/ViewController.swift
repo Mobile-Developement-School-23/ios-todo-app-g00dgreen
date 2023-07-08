@@ -29,17 +29,23 @@ class ViewController: UIViewController{
         button.addTarget(self, action: #selector(tupNewTuskCircleButton), for: .touchUpInside)
         return button
     }()
-
+    var defaults = UserDefaults()
     var cache = FileCache()
     var toDoItems: [TodoItem] = []
     var isHiddenDoneTusk: Bool = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = UIColor(red: 247/255.00, green: 246/255.0, blue: 242/255.0, alpha: 1)
         title = "Мои дела"
         cache.downloadTasks(downloadFromFileAsJSON: "test")
+        DefaultNetworkingService.shared.getAllItemsTask { item in
+            
+            DispatchQueue.main.async {
+                self.cache.downloadTasks(downloadFromFileAsJSON: "test")
+                self.tableView.reloadData()
+
+            }
+        }
         print(toDoItems.count)
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -47,10 +53,6 @@ class ViewController: UIViewController{
         toDoItems = cache.collectionTodoItem
         tableView.showsVerticalScrollIndicator = false
         tableView.backgroundColor = .clear
-//        tableView.sectionIndexBackgroundColor = UIColor(red: 247/255.00, green: 246/255.0, blue: 242/255.0, alpha: 1)
-//        tableView.sectionIndexColor = UIColor(red: 247/255.00, green: 246/255.0, blue: 242/255.0, alpha: 1)
-//        tableView.tintColor = UIColor(red: 247/255.00, green: 246/255.0, blue: 242/255.0, alpha: 1)
-//        tableView.sectionIndexTrackingBackgroundColor = UIColor(red: 247/255.00, green: 246/255.0, blue: 242/255.0, alpha: 1)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.estimatedRowHeight = 100
@@ -172,6 +174,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
                 fileCahce.downloadTasks(downloadFromFileAsJSON: "test")
                 var id = self.toDoItems[indexPath.row].id
                 fileCahce.removeTask(id: id)
+                DefaultNetworkingService.shared.deleteRequest(id: id)
                 print("deleted")
                 fileCahce.safeTasks(safeToFileAsJSON: "test")
                 self.cache.downloadTasks(downloadFromFileAsJSON: "test")

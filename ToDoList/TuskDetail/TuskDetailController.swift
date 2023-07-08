@@ -33,6 +33,7 @@ class TuskDetailController: UIViewController, DateValueDelegate, DatePickerDeleg
     var countCell = 2
     var bool = false
     var item: TodoItem?
+    var defaults = UserDefaults()
     override func viewDidLoad() {
         
         date = item?.deadline
@@ -78,7 +79,6 @@ class TuskDetailController: UIViewController, DateValueDelegate, DatePickerDeleg
             tableView.reloadData()
         }
     }
-    
     @IBAction func saveButtonAction(_ sender: Any) {
         saveToDolist()
     }
@@ -94,8 +94,13 @@ class TuskDetailController: UIViewController, DateValueDelegate, DatePickerDeleg
         if let id = item?.id {
             fileCahce.removeTask(id: id)
             print("deleted")
+            DefaultNetworkingService.shared.deleteRequest(id: id)
             fileCahce.safeTasks(safeToFileAsJSON: "test")
             tuskDetailControllerDelegate?.updateTableView()
+            if defaults.bool(forKey: "isDirty") {
+                DefaultNetworkingService.shared.patchRequest(list: fileCahce.collectionTodoItem)
+                print("booooooooob2")
+            }
             dismiss(animated: true)
         } else {
             print("error")
@@ -136,28 +141,41 @@ class TuskDetailController: UIViewController, DateValueDelegate, DatePickerDeleg
         }
         if let item = item {
             print("old")
-            fileCahce.addTask(task: TodoItem(id: item.id,
-                                             text: textView.text,
-                                             deadline: deadline,
-                                             isDone: item.isDone,
-                                             importance: importance,
-                                             dateCreation: item.dateCreation,
-                                             dateСhange: .now
-                                            ))
+            let item = TodoItem(id: item.id,
+                                text: textView.text,
+                                deadline: deadline,
+                                isDone: item.isDone,
+                                importance: importance,
+                                dateCreation: item.dateCreation,
+                                dateСhange: .now
+                               )
+            fileCahce.addTask(task: item)
+            DefaultNetworkingService.shared.putRequest(item: item)
+            
         } else {
             print("new")
-            fileCahce.addTask(task: TodoItem(id: nil,
-                                             text: textView.text,
-                                             deadline: deadline,
-                                             isDone: false,
-                                             importance: importance,
-                                             dateCreation: .now,
-                                             dateСhange: nil
-                                            ))
+            let item = TodoItem(id: nil,
+                               text: textView.text,
+                               deadline: deadline,
+                               isDone: false,
+                               importance: importance,
+                               dateCreation: .now,
+                               dateСhange: nil
+                              )
+            fileCahce.addTask(task: item)
+            DefaultNetworkingService.shared.postRequest(item: item)
         }
         print("success safe")
         fileCahce.safeTasks(safeToFileAsJSON: "test")
         tuskDetailControllerDelegate?.updateTableView()
+        if defaults.bool(forKey: "isDirty") {
+            print(fileCahce.collectionTodoItem)
+            DefaultNetworkingService.shared.patchRequest(list: fileCahce.collectionTodoItem)
+            print("booooooooob")
+            for i in fileCahce.collectionTodoItem {
+                print(i.isDone)
+            }
+        }
         dismiss(animated: true)
         
     }
