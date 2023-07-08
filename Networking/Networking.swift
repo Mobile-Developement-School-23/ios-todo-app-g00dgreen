@@ -16,10 +16,14 @@ private struct Configuration {
  }
 
 protocol NetworkingService {
-    
+    func postRequest(item: TodoItem)
+    func patchRequest(list: [TodoItem])
+    func deleteRequest(id: String)
+    func putRequest(item: TodoItem)
+    func getAllItemsTask(competion: @escaping ([TodoItem]) -> Void)
 }
 
-struct DefaultNetworkingService {
+struct DefaultNetworkingService: NetworkingService{
     
     let cache = FileCache()
     static let shared = DefaultNetworkingService()
@@ -140,14 +144,13 @@ struct DefaultNetworkingService {
                 statusChecker(status: status)
                 if status == 200 {
                     defaults.set(false, forKey: "isDirty")
-                    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@!!!!!!")
+                   
                 }
             }
             guard let data else { return }
             if let toDoItemAPI = try? JSONDecoder().decode(TodoListResponse.self, from: data) {
                 defaults.set(toDoItemAPI.revision, forKey: "revision")
-                print(toDoItemForAPI.list)
-                print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+
             }
         }
         task.resume()
