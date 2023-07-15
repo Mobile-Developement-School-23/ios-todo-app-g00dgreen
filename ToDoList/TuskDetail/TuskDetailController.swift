@@ -90,16 +90,18 @@ class TuskDetailController: UIViewController, DateValueDelegate, DatePickerDeleg
     }
     @IBAction func deleteButtonAction(_ sender: Any) {
         let fileCahce = FileCache()
-        fileCahce.downloadTasks(downloadFromFileAsJSON: "test")
+        //fileCahce.downloadTasks(downloadFromFileAsJSON: "test")
+        //fileCahce.loadCoreData()
         if let id = item?.id {
-            fileCahce.removeTask(id: id)
+           // fileCahce.removeTask(id: id)
             print("deleted")
             DefaultNetworkingService.shared.deleteRequest(id: id)
-            fileCahce.safeTasks(safeToFileAsJSON: "test")
+           // fileCahce.safeTasks(safeToFileAsJSON: "test")
+            fileCahce.deleteCoreData(id: id)
+            fileCahce.loadCoreData()
             tuskDetailControllerDelegate?.updateTableView()
             if defaults.bool(forKey: "isDirty") {
                 DefaultNetworkingService.shared.patchRequest(list: fileCahce.collectionTodoItem)
-                print("booooooooob2")
             }
             dismiss(animated: true)
         } else {
@@ -126,7 +128,7 @@ class TuskDetailController: UIViewController, DateValueDelegate, DatePickerDeleg
     }
     func saveToDolist() {
         var fileCahce = FileCache()
-        fileCahce.downloadTasks(downloadFromFileAsJSON: "test")
+        //fileCahce.downloadTasks(downloadFromFileAsJSON: "test")
         var importance: Importance = .common
         var deadline: Date?
         if textView.textColor == .lightGray || textView.text == "Что надо сделать?" || textView.text == "" {
@@ -149,7 +151,8 @@ class TuskDetailController: UIViewController, DateValueDelegate, DatePickerDeleg
                                 dateCreation: item.dateCreation,
                                 dateСhange: .now
                                )
-            fileCahce.addTask(task: item)
+            fileCahce.insertCoreData(item: item)
+            //fileCahce.addTask(task: item)
             DefaultNetworkingService.shared.putRequest(item: item)
             
         } else {
@@ -162,16 +165,16 @@ class TuskDetailController: UIViewController, DateValueDelegate, DatePickerDeleg
                                dateCreation: .now,
                                dateСhange: nil
                               )
-            fileCahce.addTask(task: item)
+            fileCahce.insertCoreData(item: item)
+            //fileCahce.addTask(task: item)
             DefaultNetworkingService.shared.postRequest(item: item)
         }
         print("success safe")
-        fileCahce.safeTasks(safeToFileAsJSON: "test")
+        //fileCahce.safeTasks(safeToFileAsJSON: "test")
         tuskDetailControllerDelegate?.updateTableView()
         if defaults.bool(forKey: "isDirty") {
             print(fileCahce.collectionTodoItem)
             DefaultNetworkingService.shared.patchRequest(list: fileCahce.collectionTodoItem)
-            print("booooooooob")
             for i in fileCahce.collectionTodoItem {
                 print(i.isDone)
             }

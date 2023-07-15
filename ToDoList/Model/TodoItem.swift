@@ -4,6 +4,8 @@
 //
 //  Created by Артем Макар on 12.06.23.
 //
+
+
 // swiftlint:disable all
 
 
@@ -11,10 +13,15 @@
 import Foundation
 import CocoaLumberjackSwift
 
+var defaults = UserDefaults()
 enum Importance: String {
     case common = "common"
     case important = "important"
     case unimportant = "unimportant"
+}
+enum DataBaseSelector {
+    case sqlLite
+    case coreData
 }
 
 struct TodoItem {
@@ -168,32 +175,32 @@ class FileCache {
         })
     }
     
-    func safeTasks(safeToFileAsJSON file: String) {
-        let json = collectionTodoItem.map { $0.json }
-        let nsDictionaryData = try? JSONSerialization.data(withJSONObject: json)
-        try? nsDictionaryData?.write(to: getUrl(file: file, fileExtension: "json"))
-        //collectionTodoItem = []
-    }
-    
-    func downloadTasks(downloadFromFileAsJSON file: String){
-        if let data = try? Data(contentsOf: getUrl(file: file, fileExtension: "json")) {
-            if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String: String]] {
-                var toDoItems: [TodoItem] = []
-                for data in json {
-                    if let item = TodoItem.parse(json: data) {
-                        toDoItems.append(item)
-                    }
-                }
-                collectionTodoItem = toDoItems
-            } else {
-                DDLogError("json decode erorr")
-                print("json decode erorr")
-            }
-        } else {
-            DDLogError("json decode erorr")
-            print("json decode erorr")
-        }
-    }
+//    func safeTasks(safeToFileAsJSON file: String) {
+//        let json = collectionTodoItem.map { $0.json }
+//        let nsDictionaryData = try? JSONSerialization.data(withJSONObject: json)
+//        try? nsDictionaryData?.write(to: getUrl(file: file, fileExtension: "json"))
+//        //collectionTodoItem = []
+//    }
+//    
+//    func downloadTasks(downloadFromFileAsJSON file: String){
+//        if let data = try? Data(contentsOf: getUrl(file: file, fileExtension: "json")) {
+//            if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String: String]] {
+//                var toDoItems: [TodoItem] = []
+//                for data in json {
+//                    if let item = TodoItem.parse(json: data) {
+//                        toDoItems.append(item)
+//                    }
+//                }
+//                collectionTodoItem = toDoItems
+//            } else {
+//                DDLogError("json decode erorr")
+//                print("json decode erorr")
+//            }
+//        } else {
+//            DDLogError("json decode erorr")
+//            print("json decode erorr")
+//        }
+//    }
     private func getUrl(file: String, fileExtension: String) -> URL {
         var path = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
         path = path.appendingPathComponent("\(file).\(fileExtension)")
@@ -206,6 +213,7 @@ class FileCache {
             print(item)
         }
     }
+
 }
 
 //задание *
@@ -357,3 +365,57 @@ extension FileCache {
     }
 }
 //swiftlint:enable all
+
+extension FileCache {
+    func loadCoreData() {
+        if defaults.bool(forKey: "isSQLite") {
+            if let items = try? SQLiteManager.shared.loadSQLite() {
+                collectionTodoItem = items
+            } else {
+                print("error sqlite load")
+            }
+        } else {
+            collectionTodoItem = CoreDataManager.shared.load()
+        }
+    }
+    func insertCoreData(item: TodoItem) {
+        loadCoreData()
+        if defaults.bool(forKey: "isSQLite") {
+            if collectionTodoItem.filter({ value in
+                value.id == item.id
+            }).count > 0 {
+                updateCoreData(id: item.id, item: item)
+            } else {
+                SQLiteManager.shared.insertItemSqlite(item)
+            }
+        } else {
+            if collectionTodoItem.filter({ value in
+                value.id == item.id
+            }).count > 0 {
+                updateCoreData(id: item.id, item: item)
+            } else {
+                CoreDataManager.shared.insert(item)
+            }
+            collectionTodoItem = CoreDataManager.shared.load()
+        }
+    }
+    func deleteCoreData(id: String) {
+        if defaults.bool(forKey: "isSQLite") {
+            SQLiteManager.shared.delete(id)
+            loadCoreData()
+        } else {
+            CoreDataManager.shared.delete(with: id)
+            collectionTodoItem = CoreDataManager.shared.load()
+        }
+    }
+    func updateCoreData(id: String, item: TodoItem) {
+        if defaults.bool(forKey: "isSQLite") {
+            SQLiteManager.shared.update(itemID: id, to: item)
+            
+        } else {
+            CoreDataManager.shared.update(id: id, with: item)
+            collectionTodoItem = CoreDataManager.shared.load()
+        }
+    }
+}
+

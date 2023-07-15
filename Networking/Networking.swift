@@ -56,22 +56,30 @@ struct DefaultNetworkingService: NetworkingService{
                 }
                 
                 var items: [String : Double] = [:]
-                cache.downloadTasks(downloadFromFileAsJSON: "test")
+                //cache.downloadTasks(downloadFromFileAsJSON: "test")
+                    cache.loadCoreData()
+                
                 cache.collectionTodoItem.forEach { value in
                     items[value.id] = value.dateСhange?.timeIntervalSince1970 ?? 0
                 }
                 for value in toDoList {
                     if items[value.id] == nil {
-                        cache.addTask(task: value)
+                        DispatchQueue.main.async {
+                            cache.updateCoreData(id: value.id, item: value)
+                        }
+                        //cache.addTask(task: value)
                     }    else if value.dateСhange!.timeIntervalSince1970 > items[value.id]! {
-                        cache.addTask(task: value)
+                        //cache.addTask(task: value)
+                        DispatchQueue.main.async {
+                            cache.updateCoreData(id: value.id, item: value)
+                        }
                         
                     }
                 }
                 if cache.collectionTodoItem.count > toDoList.count {
                     defaults.set(true, forKey: "isDirty")
                 }
-                cache.safeTasks(safeToFileAsJSON: "test")
+                //cache.safeTasks(safeToFileAsJSON: "test")
                 defaults.set(listTDL.revision, forKey: "revision")
                 competion(toDoList)
             }
