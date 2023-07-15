@@ -47,7 +47,7 @@ class SQLiteManager {
                                                             appropriateFor: nil,
                                                             create: true)
                 let str = directory.appending(path: "database.db").path
-                print(123, directory.absoluteString)
+                print(directory.absoluteString)
                 database = try Connection(str)
                 createTable()
             } catch {
@@ -55,31 +55,7 @@ class SQLiteManager {
                 print(error)
         }
     }
-//    func insert(_ item: TodoItem) throws {
-//        guard let database = database else {
-//            return
-//        }
-//        var deadlineInsert: Int?
-//        if let deadline = item.deadline?.timeIntervalSince1970 {
-//            deadlineInsert = Int(deadline)
-//        }
-//        var dateChangeInsert: Int?
-//        if let dateChange = item.dateСhange?.timeIntervalSince1970 {
-//            dateChangeInsert = Int(dateChange)
-//        }
-//        let insert = toDoItems.insert(id <- item.id,
-//                                      text <- item.text,
-//                                      deadline <- deadlineInsert,
-//                                      isDone <- item.isDone,
-//                                      importance <- item.importance.rawValue,
-//                                      dateCreation <- Int(item.dateCreation.timeIntervalSince1970),
-//                                      dateChange <- dateChangeInsert)
-//        do {
-//            try database.run(insert)
-//        } catch {
-//            print(error)
-//        }
-//    }
+
     func update(itemID: String, to item: TodoItem) {
         guard let database = database else { return }
         let value = toDoItems.filter(id == itemID)
@@ -97,7 +73,6 @@ class SQLiteManager {
         case .unimportant: importanceInt = 0
         case .important: importanceInt = 2
         }
-        print(item.isDone, "final")
         let update = value.update(id <- item.id,
                                   text <- item.text,
                                   dateCreation <- Int(item.dateCreation.timeIntervalSince1970),

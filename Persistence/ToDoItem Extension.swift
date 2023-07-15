@@ -91,7 +91,6 @@ extension TodoItem {
         case 1 : isDone = true
         default : isDone = false
         }
-        print(isDone, table[5])
         return TodoItem(id: id,
                         text: text,
                         deadline: deadlineInsert,

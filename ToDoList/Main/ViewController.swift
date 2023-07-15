@@ -42,7 +42,6 @@ class ViewController: UIViewController{
         view.backgroundColor = UIColor(red: 247/255.00, green: 246/255.0, blue: 242/255.0, alpha: 1)
         title = "Мои дела"
         cache.loadCoreData()
-        print("поехали", try? SQLiteManager.shared.loadSQLite())
         DefaultNetworkingService.shared.getAllItemsTask { item in
             
             DispatchQueue.main.async {
@@ -52,7 +51,6 @@ class ViewController: UIViewController{
 
             }
         }
-        print(toDoItems.count)
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         navigationController!.navigationBar.prefersLargeTitles = true
