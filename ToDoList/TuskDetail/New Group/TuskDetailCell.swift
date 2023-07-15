@@ -155,11 +155,11 @@ class TuskDetailCell: UITableViewCell {
                                 isDone: !itemToDo.isDone,
                                 importance: itemToDo.importance,
                                 dateCreation: itemToDo.dateCreation)
-            detailTaskCellDelegate?.setIsDone(id:  value)
+            setup(item: value)
+            detailTaskCellDelegate?.setIsDone(id: value)
            // var cache = FileCache()
             //cache.addTask(task: value)
             DefaultNetworkingService.shared.putRequest(item: value)
-            setup(item: itemToDo)
         }
        
     }

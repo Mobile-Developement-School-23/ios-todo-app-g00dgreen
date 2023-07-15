@@ -33,15 +33,21 @@ class ViewController: UIViewController{
     var cache = FileCache()
     var toDoItems: [TodoItem] = []
     var isHiddenDoneTusk: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        // поставить false для Core Data
+        defaults.set(false, forKey: "isSQLite")
+       // CoreDataManager.shared.logCoreDataDBPatch()
         view.backgroundColor = UIColor(red: 247/255.00, green: 246/255.0, blue: 242/255.0, alpha: 1)
         title = "Мои дела"
-        cache.downloadTasks(downloadFromFileAsJSON: "test")
+        cache.loadCoreData()
+        print("поехали", try? SQLiteManager.shared.loadSQLite())
         DefaultNetworkingService.shared.getAllItemsTask { item in
             
             DispatchQueue.main.async {
-                self.cache.downloadTasks(downloadFromFileAsJSON: "test")
+                //self.cache.loadCoreData()
+                //self.cache.downloadTasks(downloadFromFileAsJSON: "test")
                 self.tableView.reloadData()
 
             }
@@ -77,7 +83,8 @@ class ViewController: UIViewController{
     }
     
     @IBAction func didTapPresentTusk() {
-        cache.downloadTasks(downloadFromFileAsJSON: "test")
+        //cache.downloadTasks(downloadFromFileAsJSON: "test")
+        cache.loadCoreData()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "TuskDetailController") as! TuskDetailController
         if cache.collectionTodoItem.count > 0{
@@ -86,7 +93,8 @@ class ViewController: UIViewController{
         present(vc, animated: true)
     }
     @objc func tupNewTuskCircleButton() {
-        cache.downloadTasks(downloadFromFileAsJSON: "test")
+        //cache.downloadTasks(downloadFromFileAsJSON: "test")
+        cache.loadCoreData()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "TuskDetailController") as! TuskDetailController
         vc.tuskDetailControllerDelegate = self
@@ -146,13 +154,15 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == tableView.numberOfRows(inSection: 0)-1 {
-            cache.downloadTasks(downloadFromFileAsJSON: "test")
+            //cache.downloadTasks(downloadFromFileAsJSON: "test")
+            cache.loadCoreData()
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "TuskDetailController") as! TuskDetailController
             vc.tuskDetailControllerDelegate = self
             present(vc, animated: true)
         } else {
-            cache.downloadTasks(downloadFromFileAsJSON: "test")
+            //cache.downloadTasks(downloadFromFileAsJSON: "test")
+            cache.loadCoreData()
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: "TuskDetailController") as! TuskDetailController
             var toDoItemsFilter: [TodoItem] = toDoItems
@@ -171,18 +181,21 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         if indexPath.row != tableView.numberOfRows(inSection: 0)-1 {
             let swipeTrash = UIContextualAction(style: .normal, title: nil) { (action, view, success) in
                 let fileCahce = FileCache()
-                fileCahce.downloadTasks(downloadFromFileAsJSON: "test")
+               // fileCahce.downloadTasks(downloadFromFileAsJSON: "test")
                 var id = self.toDoItems[indexPath.row].id
-                fileCahce.removeTask(id: id)
+                //fileCahce.removeTask(id: id)
+                fileCahce.deleteCoreData(id: id)
                 DefaultNetworkingService.shared.deleteRequest(id: id)
                 print("deleted")
-                fileCahce.safeTasks(safeToFileAsJSON: "test")
-                self.cache.downloadTasks(downloadFromFileAsJSON: "test")
+                //fileCahce.safeTasks(safeToFileAsJSON: "test")
+                //self.cache.downloadTasks(downloadFromFileAsJSON: "test")
+                self.cache.loadCoreData()
                 self.toDoItems = self.cache.collectionTodoItem
                 tableView.reloadData()
             }
             let swipeInfo = UIContextualAction(style: .normal, title: nil) { (action, view, success) in
-                self.cache.downloadTasks(downloadFromFileAsJSON: "test")
+                //self.cache.downloadTasks(downloadFromFileAsJSON: "test")
+                self.cache.loadCoreData()
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let vc = storyboard.instantiateViewController(withIdentifier: "TuskDetailController") as! TuskDetailController
                 var toDoItemsFilter: [TodoItem] = self.toDoItems
@@ -209,11 +222,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
 
 }
 extension ViewController:  DetailTaskCellDelegate, TuskListHeaderDelegate {
-    func setIsDone(id: TodoItem) {
-        cache.addTask(task: id)
+    func setIsDone(id idChanged: TodoItem) {
+        cache.updateCoreData(id: idChanged.id, item: idChanged)
         toDoItems = cache.collectionTodoItem
-        tableView.reloadData()
-        cache.safeTasks(safeToFileAsJSON: "test")
     }
     
     func hideDoneTusks(value: Bool) {
@@ -223,7 +234,7 @@ extension ViewController:  DetailTaskCellDelegate, TuskListHeaderDelegate {
 }
 extension ViewController: TuskDetailControllerDelegate {
     func updateTableView() {
-        cache.downloadTasks(downloadFromFileAsJSON: "test")
+        cache.loadCoreData()
         toDoItems = cache.collectionTodoItem
         tableView.reloadData()
     }
