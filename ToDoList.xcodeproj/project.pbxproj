@@ -27,6 +27,8 @@
 		AC911AFB2A61D4DC00E65C37 /* SQLiteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC911AFA2A61D4DC00E65C37 /* SQLiteManager.swift */; };
 		AC911AFE2A61D55900E65C37 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = AC911AFD2A61D55900E65C37 /* SQLite */; };
 		AC911B012A62246D00E65C37 /* ToDoItem Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC911AF62A61C23200E65C37 /* ToDoItem Extension.swift */; };
+		AC911BB12A6B488700E65C37 /* SwiftUIViewList.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC911BB02A6B488700E65C37 /* SwiftUIViewList.swift */; };
+		AC911BB32A6B48A600E65C37 /* SwiftUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC911BB22A6B48A600E65C37 /* SwiftUIModel.swift */; };
 		ACBA07D32A3728D500504F68 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBA07D22A3728D500504F68 /* AppDelegate.swift */; };
 		ACBA07D52A3728D500504F68 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBA07D42A3728D500504F68 /* SceneDelegate.swift */; };
 		ACBA07D72A3728D500504F68 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBA07D62A3728D500504F68 /* ViewController.swift */; };
@@ -83,6 +85,8 @@
 		AC911AF32A61B2D000E65C37 /* ToDoItemCoreData+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ToDoItemCoreData+CoreDataClass.swift"; path = "/Users/artem/Desktop/Xcode Projects/ToDoList/Persistence/ToDoItemCoreData+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		AC911AF62A61C23200E65C37 /* ToDoItem Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToDoItem Extension.swift"; sourceTree = "<group>"; };
 		AC911AFA2A61D4DC00E65C37 /* SQLiteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteManager.swift; sourceTree = "<group>"; };
+		AC911BB02A6B488700E65C37 /* SwiftUIViewList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIViewList.swift; sourceTree = "<group>"; };
+		AC911BB22A6B48A600E65C37 /* SwiftUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIModel.swift; sourceTree = "<group>"; };
 		ACBA07CF2A3728D500504F68 /* ToDoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACBA07D22A3728D500504F68 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ACBA07D42A3728D500504F68 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -237,9 +241,19 @@
 			path = Persistence;
 			sourceTree = "<group>";
 		};
+		AC911BAB2A6B467300E65C37 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				AC911BB02A6B488700E65C37 /* SwiftUIViewList.swift */,
+				AC911BB22A6B48A600E65C37 /* SwiftUIModel.swift */,
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
 		ACBA07C62A3728D500504F68 = {
 			isa = PBXGroup;
 			children = (
+				AC911BAB2A6B467300E65C37 /* SwiftUI */,
 				AC911ADF2A60949800E65C37 /* Persistence */,
 				ACBA07D12A3728D500504F68 /* ToDoList */,
 				AC3FC38D2A589702005313F4 /* Networking */,
@@ -561,6 +575,7 @@
 				ACBA07D32A3728D500504F68 /* AppDelegate.swift in Sources */,
 				AC911AFB2A61D4DC00E65C37 /* SQLiteManager.swift in Sources */,
 				AC841FEB2A4476A100C53093 /* TuskDetailController.swift in Sources */,
+				AC911BB12A6B488700E65C37 /* SwiftUIViewList.swift in Sources */,
 				AC911AF42A61B2D000E65C37 /* ToDoItemCoreData+CoreDataProperties.swift in Sources */,
 				AC4606E82A4DF7E300E01F92 /* CreateNewTuskCell.swift in Sources */,
 				ACBA08032A3728FF00504F68 /* TodoItem.swift in Sources */,
@@ -570,6 +585,7 @@
 				AC911AF52A61B2D000E65C37 /* ToDoItemCoreData+CoreDataClass.swift in Sources */,
 				AC911AE92A60986D00E65C37 /* CoreDataManager.swift in Sources */,
 				AC4606EA2A4E15BA00E01F92 /* TuskDetailCell.swift in Sources */,
+				AC911BB32A6B48A600E65C37 /* SwiftUIModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
