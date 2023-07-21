@@ -364,7 +364,6 @@ extension FileCache {
         }
     }
 }
-//swiftlint:enable all
 
 extension FileCache {
     func loadCoreData() {
@@ -411,7 +410,6 @@ extension FileCache {
     func updateCoreData(id: String, item: TodoItem) {
         if defaults.bool(forKey: "isSQLite") {
             SQLiteManager.shared.update(itemID: id, to: item)
-            
         } else {
             CoreDataManager.shared.update(id: id, with: item)
             collectionTodoItem = CoreDataManager.shared.load()

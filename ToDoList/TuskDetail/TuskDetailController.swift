@@ -173,11 +173,7 @@ class TuskDetailController: UIViewController, DateValueDelegate, DatePickerDeleg
         //fileCahce.safeTasks(safeToFileAsJSON: "test")
         tuskDetailControllerDelegate?.updateTableView()
         if defaults.bool(forKey: "isDirty") {
-            print(fileCahce.collectionTodoItem)
             DefaultNetworkingService.shared.patchRequest(list: fileCahce.collectionTodoItem)
-            for i in fileCahce.collectionTodoItem {
-                print(i.isDone)
-            }
         }
         dismiss(animated: true)
         
